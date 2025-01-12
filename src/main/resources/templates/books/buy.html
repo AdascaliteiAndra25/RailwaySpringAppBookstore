@@ -8,15 +8,16 @@
 <body>
 <div th:replace="~{fragments :: header}"></div>
 
+<h1 th:text="${title}">Buy Books</h1>
 
+<form th:action="@{/books/buy}" method="post">
+    <div th:each="book : ${books}">
+        <label th:text="${book.title}"></label>
+        <input type="checkbox" name="bookIds" th:value="${book.id()}" />
+    </div>
+    <button type="submit">Buy Selected Books</button>
+</form>
 
-<div class="body">
-    <h1>Users</h1>
-    <div th:replace="~{fragments :: users_table}"></div>
-
-</div>
-<a th:href="@{/users/delete}" class="btn btn-danger">Delete User</a>
-<a th:href="@{/users/create}" class="btn btn-danger">Create User</a>
 <div th:replace="~{fragments :: footer}"></div>
 </body>
 </html>

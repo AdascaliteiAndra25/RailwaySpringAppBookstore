@@ -8,15 +8,16 @@
 <body>
 <div th:replace="~{fragments :: header}"></div>
 
+<h1 th:text="${title}">Delete User</h1>
 
+<form th:action="@{/users/delete}" method="post">
+    <div th:each="user : ${users}">
+        <label th:text="${user.username}"></label>
+        <input type="radio" name="userId" th:value="${user.id}" />
+    </div>
+    <button type="submit">Delete Selected User</button>
+</form>
 
-<div class="body">
-    <h1>Users</h1>
-    <div th:replace="~{fragments :: users_table}"></div>
-
-</div>
-<a th:href="@{/users/delete}" class="btn btn-danger">Delete User</a>
-<a th:href="@{/users/create}" class="btn btn-danger">Create User</a>
 <div th:replace="~{fragments :: footer}"></div>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+<div th:replace="~{fragments :: header}"></div>
+
+<nav th:fragment="header">
+    <h1 th:text="${title}">All Books</h1>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/books/buy">Buy Book</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/books/create">Add Book</a>
+        </li>
+    </ul>
+</nav>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.price}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
