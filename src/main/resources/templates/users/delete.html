@@ -13,7 +13,7 @@
 <form th:action="@{/users/delete}" method="post">
     <div th:each="user : ${users}">
         <label th:text="${user.username}"></label>
-        <input type="radio" name="userId" th:value="${user.id}" />
+        <input type="checkbox" name="userIds" th:value="${user.id()}" />
     </div>
     <button type="submit">Delete Selected User</button>
 </form>

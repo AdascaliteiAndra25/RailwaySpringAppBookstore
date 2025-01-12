@@ -17,6 +17,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
@@ -81,7 +83,11 @@ public class UserServiceImpl implements UserService{
     public void deleteUserById(Integer userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        userRepository.delete(user);
+        user.getRoles().clear();
+        userRepository.save(user);
+        System.out.println("merge pana aici");
+
+        userRepository.deleteById(userId);
     }
 
 

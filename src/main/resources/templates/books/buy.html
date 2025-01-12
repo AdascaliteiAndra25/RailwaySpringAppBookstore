@@ -15,7 +15,7 @@
         <label th:text="${book.title}"></label>
         <input type="checkbox" name="bookIds" th:value="${book.id()}" />
     </div>
-    <button type="submit">Buy Selected Books</button>
+    <button type="submit">Buy/Delete Selected Books</button>
 </form>
 
 <div th:replace="~{fragments :: footer}"></div>

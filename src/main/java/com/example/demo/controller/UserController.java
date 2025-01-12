@@ -21,7 +21,7 @@ public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
 
-    @GetMapping("/users")
+    @GetMapping("users")
     public String getUsers(Model model) {
         List<UserDto> userDtos = userService.getAllUsers();
         model.addAttribute("title", "Users");
@@ -29,13 +29,13 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("users/{id}")
     public UserDto getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
 
 
-    @GetMapping("/users/delete")
+    @GetMapping("users/delete")
     @Secured("ROLE_ADMIN")
     public String displayDeleteUsersForm(Model model) {
         model.addAttribute("title", "Delete Users");
@@ -43,17 +43,19 @@ public class UserController {
         return "users/delete";
     }
 
-    @PostMapping("/users/delete")
+    @PostMapping("users/delete")
     @Secured("ROLE_ADMIN")
     public String processDeleteUsersForm(@RequestParam(required = false) Integer[] userIds) {
+        System.out.println("merge secundele");
         if (userIds != null) {
             for (Integer id : userIds) {
+
                 userService.deleteUserById(id);
             }
         }
         return "redirect:/users"; }
 
-    @GetMapping("/users/create")
+    @GetMapping("users/create")
     @Secured("ROLE_ADMIN")
     public String displayCreateUserForm(Model model) {
         model.addAttribute("title", "Create User");
@@ -61,7 +63,7 @@ public class UserController {
         return "users/create";
     }
 
-    @PostMapping("/users/create")
+    @PostMapping("users/create")
     @Secured("ROLE_ADMIN")
     public String processCreateUserForm(@ModelAttribute RegistrationRequest registrationRequest, Model model) {
         if (userService.checkEmail(registrationRequest.getEmailAddress())) {
