@@ -1,4 +1,3 @@
-"# DemoRailwaySpring" 
 This project implements a bookstore management system using Spring and Spring Security for user authentication and authorization.
 The system allows users to register and log in either as a Customer or an Admin. It provides different functionalities depending on the user role.
 
